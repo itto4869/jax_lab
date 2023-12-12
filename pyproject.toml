@@ -12,6 +12,9 @@ jaxlib = "^0.4.20"
 typing-extensions = "^4.8.0"
 svgwrite = "^1.4.3"
 pgx = "^2.0.1"
+flax = "^0.7.5"
+pytest = "^7.4.3"
+termcolor = "^2.4.0"
 
 
 [build-system]
