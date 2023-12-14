@@ -16,19 +16,23 @@ class TicTacToe:
     def __init__(self):
         pass
     
-    def init(self, key: jax.Array) -> BoardState:
+    @staticmethod
+    def init(key: jax.Array) -> BoardState:
         state = _init(key)
         return state
     
-    def step(self, state: BoardState, action: jnp.int8) -> Union[Tuple[BoardState, jnp.float32], Tuple[BoardState, jnp.float32]]:
+    @staticmethod
+    def step(state: BoardState, action: jnp.int8) -> Union[Tuple[BoardState, jnp.float32], Tuple[BoardState, jnp.float32]]:
         state, reward = _step(state, action)
         return state, reward
 
-    def reset(self, key: jax.Array) -> BoardState:
+    @staticmethod
+    def reset(key: jax.Array) -> BoardState:
         state = _init(key)
         return state
     
-    def render(self, states: BoardState) -> List[str]:
+    @staticmethod
+    def render(states: BoardState) -> List[str]:
         visualed_boards = _render(states)
         return visualed_boards
 
