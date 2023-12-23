@@ -8,7 +8,7 @@ import numpy as np
 @dataclass
 class BoardState:
     board: jnp.ndarray
-    current_player: jnp.int32
+    current_player: jnp.ndarray
     valid_actions: jnp.ndarray
     done: jnp.bool_
 
@@ -74,7 +74,7 @@ def _is_done(board: jnp.ndarray) -> jnp.bool_:
     return is_done
 
 def _is_done_player(board: jnp.ndarray, index: jnp.ndarray, player_id: jnp.int32) -> jnp.bool_:
-    return jnp.any(jnp.all(jnp.equal(board[index], player_id+1), axis=1))
+    return jnp.logical_or(jnp.any(jnp.all(jnp.equal(board[index], player_id+1), axis=1)), jnp.all(jnp.not_equal(board, 0)))
 
 def _reward(next_player: jnp.int32, done: jnp.bool_) -> Union[jnp.float32, jnp.ndarray]:
     # player 0 が勝った場合1、player 1 が勝った場合-1
