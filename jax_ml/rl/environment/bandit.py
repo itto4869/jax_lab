@@ -5,6 +5,14 @@ from typing import Tuple
 
 @dataclass
 class BanditState:
+    """
+    A dataclass that represents the state of the bandit environment.
+    
+    Attributes:
+        n_arms: number of arms
+        expected_value: expected value of each arm
+        step: number of current step
+    """
     n_arms: jnp.int32
     expected_value: jnp.ndarray
     step: jnp.int32
@@ -35,7 +43,8 @@ class Bandit:
             BanditState(n_arms=Array([10, 10], dtype=int32, weak_type=True), expected_value=Array([[-2.6105583 ,  0.03385283,  1.0863333 , -1.4802988 ,  0.48895672,
                         1.062516  ,  0.54174834,  0.0170228 ,  0.2722685 ,  0.30522448],
                     [-0.38812608, -0.04487164, -2.0427258 ,  0.07932311,  0.33349916,
-                        0.7959976 , -1.4411978 , -1.6929979 , -0.37369204, -1.5401139 ]],      dtype=float32), step=Array([0, 0], dtype=int32))"""
+                        0.7959976 , -1.4411978 , -1.6929979 , -0.37369204, -1.5401139 ]],      dtype=float32), step=Array([0, 0], dtype=int32))
+        """
         return _init(key, n_arms)
 
     def step(self, key: jax.Array, state: BanditState, action: jnp.int16) -> Tuple[BanditState, jnp.float32]:
